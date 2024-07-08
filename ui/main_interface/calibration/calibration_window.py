@@ -23,7 +23,7 @@ class CalibrationWindow(QWidget):
         self.ui.get_point.clicked.connect(self.get_point)
         self.ui.calibration_result.clicked.connect(self.get_calibration_result)
 
-        self.tool_id = 14
+        self.tool_id = 0
         self.wrist_tcf = [0, 0, 0, 0, 0, 0]
         self.robot.SetToolCoord(self.tool_id, self.wrist_tcf, 0, 0)
 
@@ -59,6 +59,7 @@ class CalibrationWindow(QWidget):
                 self.ui.label_4.setEnabled(True)
             case 7:
                 self.ui.label_4.setEnabled(False)
+                self.ui.get_point.setEnabled(False)
                 self.ui.calibration_result.setEnabled(True)
 
     def get_calibration_result(self):
@@ -76,6 +77,6 @@ class CalibrationWindow(QWidget):
         print(result)
 
         with open(f"{CONFIG_DIR}/tcf.txt", "w") as f:
-            f.write(f"{pose2str(result[1])}")
+            f.write(f"{pose2str(result[1])[1:-1]}")
 
         self.close()
