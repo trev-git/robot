@@ -2,7 +2,7 @@
 # 1. Добавить выбор ID инструмента
 
 
-from PyQt6.QtWidgets import QWidget, QMessageBox
+from PyQt6.QtWidgets import QWidget, QMessageBox, QFileDialog
 from .calibration_window_ui import Ui_CalibrationWindow
 from utils import DATA_DIR, CONFIG_DIR, pose2str
 import yaml
@@ -67,16 +67,18 @@ class CalibrationWindow(QWidget):
         for i, point in enumerate(self.calibration_points):
             points[i + 1] = point
 
-        with open(f"{DATA_DIR}/tcf_calibration.yaml", "w") as f:
+        yaml_file = QFileDialog().getSaveFileName(self, "Сохранить точки калибровки", f"{DATA_DIR}/tcf_calibration.yaml", "*.yaml")
+        with open(yaml_file[0], "w") as f:
             yaml.dump(points, f, default_flow_style=False)
 
         result = self.robot.ComputeTool()
         if result == 25:
             QMessageBox.critical(self, "Ошибка", "Ошибка калибрации!")
             return
-        print(result)
 
-        with open(f"{CONFIG_DIR}/tcf.txt", "w") as f:
+        txt_file = QFileDialog().getSaveFileName(self, "Сохранить результаты калибровки", f"{CONFIG_DIR}/tcf.txt", "*.txt")
+
+        with open(txt_file[0], "w") as f:
             f.write(f"{pose2str(result[1])[1:-1]}")
 
         self.close()

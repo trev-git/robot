@@ -1,5 +1,5 @@
 import numpy as np
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QFileDialog
 from .workspace_calibration_ui import Ui_WorkspaceCalibration
 from utils import CONFIG_DIR, pose2str, DATA_DIR
 import yaml
@@ -68,7 +68,8 @@ class WorkspaceCalibration(QWidget):
         self.ui.get_point.setEnabled(False)
 
     def get_calibration_result(self):
-        with open(f'{DATA_DIR}/workspace_calibration.yaml', 'w') as f:
+        yaml_file = QFileDialog().getSaveFileName(self, "Сохранить точки рабочего пространства", f"{DATA_DIR}/workspace_calibration.yaml", "*.yaml")
+        with open(f'{yaml_file[0]}', 'w') as f:
             yaml.dump(self.current_ws_points, f, default_flow_style=False)
 
         points_arm = np.float64([self.current_ws_points[i] for i in range(1, 5)])[:, :3]
@@ -89,7 +90,8 @@ class WorkspaceCalibration(QWidget):
         euler_angle_deg = np.degrees(euler_angle_rad)
         pose_base2ws = np.hstack((t_mm, euler_angle_deg))
 
-        with open(f'{CONFIG_DIR}/pose_base2ws.txt', 'w') as f:
+        txt_file = QFileDialog().getSaveFileName(self, "Сохранить результаты калибровки", f'{CONFIG_DIR}/pose_base2ws.txt', "*.txt")
+        with open(txt_file[0], 'w') as f:
             f.write(pose2str(pose_base2ws)[1:-1])
 
         self.close()
