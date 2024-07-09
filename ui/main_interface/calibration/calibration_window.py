@@ -1,7 +1,3 @@
-# TODO:
-# 1. Добавить выбор ID инструмента
-
-
 from PyQt6.QtWidgets import QWidget, QMessageBox, QFileDialog
 from .calibration_window_ui import Ui_CalibrationWindow
 from utils import DATA_DIR, CONFIG_DIR, pose2str
