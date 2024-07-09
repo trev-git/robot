@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>451</width>
-    <height>586</height>
+    <width>437</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,39 +30,36 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Ширина пространства (мм)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDoubleSpinBox" name="width">
-       <property name="maximum">
-        <double>1000.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Высота пространства (мм)</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDoubleSpinBox" name="height">
-       <property name="maximum">
-        <double>1000.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="parallel">
-       <property name="text">
-        <string>Плоскость инструмента параллельна плоскости рабочего пространства</string>
-       </property>
-      </widget>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Ширина пространства (мм)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="width">
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Высота пространства (мм)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="height">
+         <property name="maximum">
+          <double>10000.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
@@ -76,7 +73,7 @@
        <item>
         <widget class="QPushButton" name="auto_point">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="text">
           <string>Авторассчёт</string>
@@ -89,7 +86,7 @@
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Получить результаты калибрации</string>
+          <string>Получить результаты калибровки</string>
          </property>
         </widget>
        </item>

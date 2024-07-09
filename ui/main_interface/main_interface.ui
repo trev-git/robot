@@ -2,80 +2,111 @@
 <ui version="4.0">
  <class>MainInterface</class>
  <widget class="QMainWindow" name="MainInterface">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>799</width>
-    <height>600</height>
+    <width>458</width>
+    <height>231</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>458</width>
+    <height>231</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>458</width>
+    <height>231</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="calibration_six_points">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>110</y>
-      <width>291</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Калибровка (метод 6 точек)</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="calibration_workspace">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>140</y>
-      <width>291</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Калибровка рабочего пространства</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>50</y>
-      <width>151</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Выберите ID инструмента:</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="spinBox">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>70</y>
-      <width>291</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <number>14</number>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>799</width>
-     <height>22</height>
-    </rect>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="0">
+     <widget class="QPushButton" name="calibration_workspace">
+      <property name="text">
+       <string>Калибровка рабочего пространства</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="point_transformation">
+      <property name="text">
+       <string>Преобразование точек</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="calibration_six_points">
+      <property name="text">
+       <string>Калибровка (метод 6 точек)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Выберите ID инструмента:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox">
+        <property name="maximum">
+         <number>14</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Файл калибровки</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLineEdit" name="file_name"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="file_pick">
+          <property name="text">
+           <string>Выбрать файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
