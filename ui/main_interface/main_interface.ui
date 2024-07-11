@@ -9,26 +9,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>458</width>
-    <height>231</height>
+    <width>248</width>
+    <height>317</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
-    <width>458</width>
-    <height>231</height>
+    <width>0</width>
+    <height>0</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>458</width>
-    <height>231</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -36,33 +36,12 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
-    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="0">
-     <widget class="QPushButton" name="calibration_workspace">
-      <property name="text">
-       <string>Калибровка рабочего пространства</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QPushButton" name="point_transformation">
-      <property name="text">
-       <string>Преобразование точек</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QPushButton" name="calibration_six_points">
-      <property name="text">
-       <string>Калибровка (метод 6 точек)</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="0">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -105,6 +84,68 @@
        </layout>
       </item>
      </layout>
+    </item>
+    <item row="4" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Файл БД</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="db_file_name"/>
+        </item>
+        <item>
+         <widget class="QPushButton" name="db_file_pick">
+          <property name="text">
+           <string>Выбрать файл</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="0">
+     <widget class="QPushButton" name="calibration_six_points">
+      <property name="text">
+       <string>Калибровка (метод 6 точек)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="calibration_workspace">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Калибровка рабочего пространства</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QPushButton" name="point_transformation">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Преобразование точек</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QPushButton" name="load_db">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Загрузить БД</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
