@@ -11,18 +11,33 @@ class PointTransformation(QWidget):
         self.ui.setupUi(self)
         self.setWindowTitle('Преобразование точек')
 
-        db = QSqlDatabase.addDatabase('QSQLITE')
-        db.setDatabaseName(db_file)
-        if not db.open():
-            QMessageBox.critical(self, 'Ошибка', 'Ошибка подключения к БД!')
-        
-        model = QSqlTableModel(db=db)
-        model.setTable('points')
-        model.select()
-        self.ui.point_table.setModel(model)
-        self.ui.point_table.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+        self.db_file = db_file
+        self.db = None
+        self.open_db()
 
         self.ui.point_transform.clicked.connect(self.transform)
+
+    def open_db(self):
+        if self.db:
+            self.close_db()
+
+        self.db = QSqlDatabase.addDatabase('QSQLITE', 'point_db')
+        self.db.setDatabaseName(self.db_file)
+        if not self.db.open():
+            QMessageBox.critical(self, 'Ошибка', 'Ошибка подключения к БД!')
+
+        self.model = QSqlTableModel(db=self.db)
+        self.model.setTable('points')
+        self.model.select()
+        self.ui.point_table.setModel(self.model)
+        self.ui.point_table.setSelectionMode(QAbstractItemView.SelectionMode.ExtendedSelection)
+
+    def close_db(self):
+        self.ui.point_table.setModel(None)
+        del self.model
+        self.db.close()
+        del self.db
+        QSqlDatabase.removeDatabase('point_db')
 
     def transform(self):
         prefix, ok = QInputDialog.getText(self, 'Префикс', 'Префикс для точек:')
@@ -42,3 +57,6 @@ class PointTransformation(QWidget):
 
         self.ui.point_table.model().select()
         self.ui.point_table.reset()
+
+    def closeEvent(self, event):
+        self.close_db()
