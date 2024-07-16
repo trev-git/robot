@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QWidget, QMessageBox, QInputDialog, QAbstractItemView
+from PyQt6.QtCore import QRegularExpression
 from PyQt6.QtSql import QSqlDatabase, QSqlTableModel, QSqlQuery
 from .point_transformation_ui import Ui_PointTransformation
 
@@ -8,6 +9,7 @@ class PointTransformation(QWidget):
         super(PointTransformation, self).__init__()
         self.ui = Ui_PointTransformation()
         self.ui.setupUi(self)
+        self.setWindowTitle('Преобразование точек')
 
         db = QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(db_file)
@@ -23,8 +25,10 @@ class PointTransformation(QWidget):
         self.ui.point_transform.clicked.connect(self.transform)
 
     def transform(self):
-        prefix, ok = QInputDialog.getText(self, 'Префикс', 'Префикс для точек:, ')
-        if not ok:
+        prefix, ok = QInputDialog.getText(self, 'Префикс', 'Префикс для точек:')
+        re = QRegularExpression('^[a-zA-Z0-9]+$')
+        if not ok or not re.match(prefix).hasMatch():
+            QMessageBox.critical(self, "Ошибка", "Действие отклонено или неправильный префикс (только латинские буквы и цифры)!")
             return
 
         selection = self.ui.point_table.selectionModel()
